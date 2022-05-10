@@ -28,6 +28,13 @@ function thuNhapCT(tong,soNg){
     return tong - (4e+6) - soNg*(1.6e+6)
 }
 //! Tính tiền cap
+function addDisabled(){
+    if((document.getElementById('loaiKH').value) == 'nhadan'){
+        document.getElementById('sokn').setAttribute('disabled','true');
+    }else{
+        document.getElementById('sokn').removeAttribute('disabled')
+    }
+}
 function tinhTienCap(){
     let maKH = document.getElementById('mkh').value;
     let loaiKH = document.getElementById('loaiKH').value;
@@ -38,7 +45,7 @@ function tinhTienCap(){
     let PDV = 0;
 //----------------------------------------------------------------->
     if(loaiKH == '' || maKH == ''){
-        alert('Nhập đầy đủ thông tin !');
+        alert('Yêu cầu nhập đầy đủ thông tin !');
     }else if(loaiKH == 'nhadan'){
         PXL = 4.5;
         PDV = 20.5;

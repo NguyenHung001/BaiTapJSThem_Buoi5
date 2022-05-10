@@ -67,6 +67,7 @@
         }
         h3{
             color: #33FFFF;
+            font-weight: 700;
         }
         .nav-pills .nav-link.active{
             background-color: #00FF7F;
@@ -143,11 +144,14 @@
         }
         .dialogbox{
             background-color: #F5D5C7;
-            border-radius: 5px;
+            border-radius: 2px;
             max-width: 500px;
             margin: auto;
             z-index: 101;
-            transform: translateY(40%);
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+            position: absolute;
         }
         .overlay{
             background-color: rgba(0, 0, 0, 0.61);
@@ -177,13 +181,6 @@
             display: flex;
             gap: 15px;
         }
-        .dialog>a i{
-            color: black;
-            font-size: 25px;
-            position: absolute;
-            right: 15px;
-            top: 7px;
-        }
         .dialog img{
             width: 100px;
         }
@@ -197,6 +194,13 @@
             text-align: center;
             padding-top: 10px;
             border-top: 1px solid rgba(0, 0, 0, 0.329);
+        }
+        .dialog__item:last-of-type h5{
+            font-weight: 700;
+        }
+        .dialog__item:last-of-type p{
+            font-weight: 700;
+            font-size: 17px;
         }
         .dialog h6{
             text-align: right;
@@ -230,8 +234,7 @@
             <div class="dialogbox" >
                 <div class="dialog">
                     <img src="https://cybersoft.edu.vn/wp-content/uploads/2017/04/MAX-OP1.png" alt="">
-                    <a href="#"><i class="fa-solid fa-xmark"></i></a>
-                    <h4>Hóa đơn tiền cap</h4>
+                    <h4>Hóa đơn tiền cáp</h4>
                     <p>Địa chỉ: 103 Nguyễn Hữu Dật, Quận Hải Châu, TP. Đà Nẵng</p>
                     <div class="dialog__content">
                         <div class="dialog__item">
@@ -239,7 +242,7 @@
                             <p id="makh"></p>
                         </div>
                         <div class="dialog__item">
-                            <p>Loại khách hàng: </p>
+                            <p>Loại hình: </p>
                             <p id="loaikh"></p>
                         </div>
                         <div class="dialog__item">
@@ -279,7 +282,7 @@
                                 Tính thuế thu nhập cá nhân</a>
                             <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#bai2">
                                 <i class="fa-solid fa-chart-line"></i>
-                                Tính tiền cap</a>
+                                Tính tiền cáp</a>
                           </div>
                         </div>
                         <div class="col-9">
@@ -315,7 +318,7 @@
                                 </div>
                                 <div>
                                     <label>Khách hàng là:</label>
-                                    <select id="loaiKH">
+                                    <select id="loaiKH"  onchange="addDisabled()">
                                         <option value="">--Chọn--</option>
                                         <option value="nhadan">Nhà dân</option>
                                         <option value="doanhnghiep">Doanh Nghiệp</option>
@@ -323,7 +326,7 @@
                                 </div>
                                 <div class="soketnoi">
                                     <label for="sokn">Số kết nối:</label>
-                                    <input type="number" id="sokn" dis>
+                                    <input type="number" id="sokn">
                                 </div>
                                 <div class="sokenh">
                                     <label for="sokenh">Số kênh cao cấp:</label>
