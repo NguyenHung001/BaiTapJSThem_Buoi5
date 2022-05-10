@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Buổi 5 tiếp theo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: #eee;
+        }
+        .wrapper{
+            height: 100vh;
+            width: 100%;
+            background-image: url(https://media.vneconomy.vn/w800/images/upload/2022/04/08/cach-tinh-thue-ttdb.png);
+            background-position: top;
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        .box{
+            background-color: #000033;
+            color: #fff;
+            border-radius: 10px;
+            border: 1px  ;
+            box-shadow: 0 10px 15px 5px rgba(0, 0, 0, 0.719);
+        }
+        .content{
+            padding: 0 50px;
+        }
+        .row{
+            padding-bottom: 50px;
+            flex-direction: row;
+        }
+        .row .col-3{
+            flex: 1;
+            max-width: 30%;
+            border-right: 1px solid rgba(238, 238, 238, 0.315);
+        }
+        .row .col-9{
+            max-width: 70%;
+        }
+        a{
+            color: #CCFFFF;
+            font-weight: 700;
+        }
+        a:hover{
+            color: #CCFFFF;
+            text-decoration: none;
+        }
+        h1{
+            color: #66FF66;
+            font-weight: 800;
+            font-size: 50px;
+            text-align: center;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid rgba(238, 238, 238, 0.315);
+            text-shadow:  0 7px 7px #66FF66;
+        }
+        h3{
+            color: #33FFFF;
+        }
+        .nav-pills .nav-link.active{
+            background-color: #00FF7F;
+            box-shadow: 0 0 10px 2px #00FF7F;
+            color: black;
+            transition: all .3s ease-in-out;
+        }
+        .tab-content>.active{
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+        }
+        label{
+            margin-right: 10px;
+            font-weight: 700;
+        }
+        input{
+            outline: 0;
+            border: none;
+            border-radius: 5px;
+            padding: 2px;
+            padding-left: 10px;
+            background-color: #C8C8C8;
+        }
+        .bt{
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        .text span{
+            font-size: 30px;
+            font-weight: 700;
+            color: #66FF66;
+        }
+        .result{
+            margin-top: 20px;
+            position: relative;
+            height: 70px;
+            width: 260px;
+            display: inline-block;
+        }
+        #bai2 .result button{
+            width: 160px;
+        }
+        .result button{
+            position: absolute;
+            top: 0;
+            left: 20px;
+            outline: 0;
+            border: 0;
+            width: 100px;
+            height: 45px;
+            background-color: #660033;
+            color: #33FFFF;
+            font-size: 20px;
+            transform: perspective(45px) rotateX(10deg);
+            box-shadow: 0 6px 5px #33FFFF;
+            margin-top: -2px;
+            transition: all .1s;
+        }
+        .result button:hover{
+            margin-top: 2px;
+            box-shadow: 0 4px 3px #33FFFF;
+        }
+        .maKH input, .soketnoi input, .sokenh input{
+            width: 100px;
+        }
+        select{
+            text-align: center;
+            outline: 0;
+            height: 30px;
+            border: 0;
+            font-weight: 700;
+        }
+        .dialogbox{
+            background-color: #F5D5C7;
+            border-radius: 5px;
+            max-width: 500px;
+            margin: auto;
+            z-index: 101;
+            transform: translateY(40%);
+        }
+        .overlay{
+            background-color: rgba(0, 0, 0, 0.61);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            display: none;
+        }
+        .overlay>a{
+            position: absolute;
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            cursor: default;
+        }
+        .overlay:target{
+            display: block;
+        }
+        .dialog{
+            padding: 15px 50px 40px;
+            position: relative;
+        }
+        .dialog__item{
+            display: flex;
+            gap: 15px;
+        }
+        .dialog>a i{
+            color: black;
+            font-size: 25px;
+            position: absolute;
+            right: 15px;
+            top: 7px;
+        }
+        .dialog img{
+            width: 100px;
+        }
+        .dialog h4{
+            font-size: 30px;
+            font-weight: 800;
+            color: #FF3300;
+            text-align: center;
+        }
+        .dialog__item:last-of-type{
+            text-align: center;
+            padding-top: 10px;
+            border-top: 1px solid rgba(0, 0, 0, 0.329);
+        }
+        .dialog h6{
+            text-align: right;
+            margin-top: 20px;
+        }
+        .dialog p{
+            font-weight: 600;
+        }
+        .dialog__content{
+            border: 1px solid rgba(0, 0, 0, 0.712);
+            padding: 20px;
+        }
+        .event{
+            margin-top: 35px;
+            display: flex;
+            justify-content: space-around;
+        }
+        .event a{
+            color: #000033;
+            background-color: #CC9900;
+            padding: 8px 15px;
+            display: inline-block;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="overlay" id="hoadoncap">
+            <a href="#"></a>
+            <div class="dialogbox" >
+                <div class="dialog">
+                    <img src="https://cybersoft.edu.vn/wp-content/uploads/2017/04/MAX-OP1.png" alt="">
+                    <a href="#"><i class="fa-solid fa-xmark"></i></a>
+                    <h4>Hóa đơn tiền cap</h4>
+                    <p>Địa chỉ: 103 Nguyễn Hữu Dật, Quận Hải Châu, TP. Đà Nẵng</p>
+                    <div class="dialog__content">
+                        <div class="dialog__item">
+                            <p>Mã khách hàng: </p>
+                            <p id="makh"></p>
+                        </div>
+                        <div class="dialog__item">
+                            <p>Loại khách hàng: </p>
+                            <p id="loaikh"></p>
+                        </div>
+                        <div class="dialog__item">
+                            <p>Phí xử lí hóa đơn: </p>
+                            <p id="phixuli"></p>
+                        </div>
+                        <div class="dialog__item">
+                            <p>Phí dịch vụ cơ bản: </p>
+                            <p id="phidv"></p>
+                        </div>
+                        <div class="dialog__item">
+                            <p>Thuê kênh cao cấp: </p>
+                            <p id="thuekenh"></p>
+                        </div>
+                        <div class="dialog__item">
+                            <h5>Tổng tiền:</h5>
+                            <p id="tongtien"></p>
+                        </div>
+                    </div>
+                    <h6>.....Ngày.....Tháng.....Năm 202...</h6>
+                    <div class="event">
+                        <a href="#">Thoát</a>
+                        <a href="#">In hóa đơn</a>
+                    </div>
+                </div>            
+            </div>
+        </div>
+        <div class="container pt-5">
+            <div class="box">
+                <div class="content">
+                    <h1>Bài tập thêm JavaScript buổi 5</h1>
+                    <div class="row">
+                        <div class="col-3">
+                          <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" >
+                            <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#bai1">
+                                <i class="fa-solid fa-sack-dollar"></i>
+                                Tính thuế thu nhập cá nhân</a>
+                            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#bai2">
+                                <i class="fa-solid fa-chart-line"></i>
+                                Tính tiền cap</a>
+                          </div>
+                        </div>
+                        <div class="col-9">
+                          <div class="tab-content" id="v-pills-tabContent">
+                            <div class="tab-pane fade show active" id="bai1">
+                                <h3>Nhập thông tin cá nhân</h3>
+                                <div class="item">
+                                    <label for="name">Họ tên:</label>
+                                    <input type="text" id="name">
+                                </div>
+                                <div class="item">
+                                    <label for="thunhap">Tổng thu nhập năm:</label>
+                                    <input type="number" id="thunhap">
+                                </div>
+                                <div class="item">
+                                    <label for="people">Số người phụ thuộc:</label>
+                                    <input type="number" id="people">
+                                </div>
+                                <div class="bt">
+                                    <div class="result">
+                                        <button onclick="tinhThue()">Tính thuế</button>
+                                    </div>
+                                    <div class="text">
+                                        <span id="result1"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="bai2">
+                                <h3>Nhập thông tin khách hàng</h3>
+                                <div class="maKH">
+                                    <label for="mkh">Mã khách hàng:</label>
+                                    <input type="number" id="mkh">
+                                </div>
+                                <div>
+                                    <label>Khách hàng là:</label>
+                                    <select id="loaiKH">
+                                        <option value="">--Chọn--</option>
+                                        <option value="nhadan">Nhà dân</option>
+                                        <option value="doanhnghiep">Doanh Nghiệp</option>
+                                    </select>
+                                </div>
+                                <div class="soketnoi">
+                                    <label for="sokn">Số kết nối:</label>
+                                    <input type="number" id="sokn" dis>
+                                </div>
+                                <div class="sokenh">
+                                    <label for="sokenh">Số kênh cao cấp:</label>
+                                    <input type="number" id="sokenh">
+                                </div>
+                                <div class="bt">
+                                    <div class="result">
+                                        <a href="#hoadoncap">
+                                            <button onclick="tinhTienCap()">Xuất hóa đơn</button>
+                                        </a>
+                                    </div>
+                                    <div class="text">
+                                        <p id="result2"></p>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>
