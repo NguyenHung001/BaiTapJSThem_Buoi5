@@ -27,6 +27,7 @@ function tinhThue(){
 function thuNhapCT(tong,soNg){
     return tong - (4e+6) - soNg*(1.6e+6)
 }
+//=======================================================================================>
 //! Tính tiền cap
 function addDisabled(){
     if((document.getElementById('loaiKH').value) == 'nhadan'){

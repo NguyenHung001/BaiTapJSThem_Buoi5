@@ -23,7 +23,7 @@
             position: relative;
         }
         .box{
-            background-color: #000033;
+            background-color: #000033e6;
             color: #fff;
             border-radius: 10px;
             border: 1px  ;
@@ -130,7 +130,7 @@
             box-shadow: 0 4px 3px #33FFFF;
         }
         .maKH input, .soketnoi input, .sokenh input{
-            width: 100px;
+            width: 120px;
         }
         select{
             text-align: center;
@@ -159,13 +159,6 @@
             left: 0;
             z-index: 100;
             display: none;
-        }
-        .overlay>a{
-            position: absolute;
-            display: inline-block;
-            width: 100%;
-            height: 100%;
-            cursor: default;
         }
         .overlay:target{
             display: block;
@@ -215,19 +208,21 @@
             display: flex;
             justify-content: space-around;
         }
-        .event a{
+        .event a,.event span{
             color: #000033;
             background-color: #CC9900;
             padding: 8px 15px;
             display: inline-block;
             border: 1px solid black;
+            font-weight: 700;
+            cursor: pointer;
         }
+        
     </style>
 </head>
 <body>
     <div class="wrapper">
         <div class="overlay" id="hoadoncap">
-            <a href="#"></a>
             <div class="dialogbox" >
                 <div class="dialog">
                     <img src="https://cybersoft.edu.vn/wp-content/uploads/2017/04/MAX-OP1.png" alt="">
@@ -262,7 +257,7 @@
                     <h6>.....Ngày.....Tháng.....Năm 202...</h6>
                     <div class="event">
                         <a href="#">Thoát</a>
-                        <a href="#">In hóa đơn</a>
+                        <span href="#">In hóa đơn</span>
                     </div>
                 </div>            
             </div>
@@ -311,7 +306,7 @@
                                 <h3>Nhập thông tin khách hàng</h3>
                                 <div class="maKH">
                                     <label for="mkh">Mã khách hàng:</label>
-                                    <input type="number" id="mkh">
+                                    <input type="text" id="mkh">
                                 </div>
                                 <div>
                                     <label>Khách hàng là:</label>
